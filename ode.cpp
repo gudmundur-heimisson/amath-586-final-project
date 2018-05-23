@@ -6,7 +6,6 @@ namespace py = boost::python;
 namespace np = boost::python::numpy;
 
 BOOST_PYTHON_MODULE(ode) {
-//   Py_Initialize();
     np::initialize();
-    py::def("get_shape", getShape);
+    py::class_<ForwardEulerSolver>("ForwardEulerSolver", py::init<double, double, double, double, int>());
 }
