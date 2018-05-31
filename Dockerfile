@@ -4,13 +4,15 @@ RUN apt-get install -y \
   build-essential pkg-config \
   cmake gfortran git \
   python3 python3-dev python3-pip
+ENV LD_LIBRARY_PATH=/usr/local/lib
+ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+ENV C_INCLUDE_PATH=/usr/local/include
+ENV CPLUS_INCLUDE_PATH=/usr/local/include
 # Install OpenBLAS
 WORKDIR /
 RUN git clone https://github.com/xianyi/OpenBLAS --depth=1 --branch=v0.2.20 --recursive
-RUN mkdir /OpenBLAS/build
-WORKDIR /OpenBLAS/build
-RUN cmake .. && \
-  make -j8 install
+WORKDIR /OpenBLAS
+RUN make && make PREFIX=/usr/local FC=gfortran install
 # Install NumPy
 RUN python3 -m pip install cython
 WORKDIR /
