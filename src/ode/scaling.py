@@ -1,3 +1,8 @@
+# Author: Guðmundur Heimisson
+# Email: heimig@uw.edu
+# AMATH 586 Final Project Code
+# module ode.scaling
+
 def scale2temperature(scale):
     return 180.0 * scale + 293.15
 

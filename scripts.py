@@ -1,4 +1,7 @@
-# scripts.py
+# Author: Guðmundur Heimisson
+# Email: heimig@uw.edu
+# AMATH 586 Final Project Code
+# main module
 
 import matplotlib.pyplot as plt
 import numpy as np

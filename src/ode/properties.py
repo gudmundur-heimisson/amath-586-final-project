@@ -1,4 +1,7 @@
-# ode.properties
+# Author: Guðmundur Heimisson
+# Email: heimig@uw.edu
+# AMATH 586 Final Project Code
+# module ode.properties
 import numpy as np
 
 gas_constant = 8.3144598

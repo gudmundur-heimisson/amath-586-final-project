@@ -1,3 +1,8 @@
+# Author: Guðmundur Heimisson
+# Email: heimig@uw.edu
+# AMATH 586 Final Project Code
+# module ode.crank_nicholson
+
 import numpy as np
 
 class CrankNicholsonSolver:
