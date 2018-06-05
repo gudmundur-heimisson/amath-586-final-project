@@ -1,4 +1,4 @@
-# Author: Guðmundur Heimisson
+# Author: Gudmundur Heimisson
 # Email: heimig@uw.edu
 # AMATH 586 Final Project Code
 # module ode.crank_nicholson
@@ -11,7 +11,8 @@ class CrankNicholsonSolver:
     '''
 
     def __init__(self, initial_state, left_flux, right_flux, timestep, grid_size,
-                 start_grid=0, end_grid=1, start_time=0, end_time=1, max_iters=1000):
+                 start_grid=0, end_grid=1, start_time=0, end_time=1,
+                 max_iters=1000):
         self.initial_state = initial_state
         self.left_flux = left_flux
         self.right_flux = right_flux
@@ -40,7 +41,8 @@ class CrankNicholsonSolver:
         iters += 1
         r = k / (2 * np.power(h, 2))
         #print(h, k, r)
-        A = np.diagflat((m+2) * [-2]) + np.diagflat((m+1) * [1], k=-1) + np.diagflat((m+1) * [1], k=1)
+        A = np.diagflat((m+2) * [-2]) + np.diagflat((m+1) * [1], k=-1) \
+             + np.diagflat((m+1) * [1], k=1)
         identity = np.identity(m+2)
         A1 = np.zeros((m+2, m+2))
         A1[0, :3] = [3., -4., 1.]

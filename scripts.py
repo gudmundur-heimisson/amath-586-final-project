@@ -5,8 +5,9 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from ode.properties import batter_thermal_conductivity, batter_water_diffusivity, atmospheric_pressure, \
-    batter_vapor_content, batter_air_content, batter_heat_capacity, batter_density, \
+from ode.properties import batter_thermal_conductivity, batter_water_diffusivity, \
+    atmospheric_pressure, batter_vapor_content, batter_air_content, \
+    batter_heat_capacity, batter_density, \
     partial_vapor_pressure, batter_thermal_diffusivity
 from ode.crank_nicholson import CrankNicholsonSolver
 from ode.scaling import scale2temperature, scale2time, scale2displacement
@@ -100,7 +101,8 @@ def generate_temperature_distribution_graph():
     initial_state = np.array((grid_size+2) * [0.0])
     left_flux = 0
     right_flux = 2.03e11
-    solver = CrankNicholsonSolver(initial_state, left_flux, right_flux, timestep, grid_size,
+    solver = CrankNicholsonSolver(initial_state, left_flux, right_flux, timestep,
+                                  grid_size,
                                   start_grid=start_grid, end_grid=end_grid,
                                   end_time=1)
     for t, u in solver:
@@ -118,10 +120,12 @@ def generate_temperature_slices_graph():
     initial_state = np.array((grid_size+2) * [0.0])
     left_flux = 0
     right_flux = 2.03e11
-    solver = CrankNicholsonSolver(initial_state, left_flux, right_flux, timestep, grid_size,
+    solver = CrankNicholsonSolver(initial_state, left_flux, right_flux, timestep, 
+                                  grid_size,
                                   start_grid=start_grid, end_grid=end_grid,
                                   end_time=0.3)
-    slice_indices = [1, round(grid_size / 4), round(grid_size/2), round(3*grid_size/4), round(0.99 * grid_size)]
+    slice_indices = [1, round(grid_size / 4), round(grid_size/2),
+                     round(3*grid_size/4), round(0.99 * grid_size)]
     times = []
     slice_data = [[], [], [], [], []]
     print(slice_indices)
