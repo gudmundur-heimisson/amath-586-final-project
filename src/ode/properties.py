@@ -1,4 +1,4 @@
-# Author: Guðmundur Heimisson
+# Author: Gudmundur Heimisson
 # Email: heimig@uw.edu
 # AMATH 586 Final Project Code
 # module ode.properties
@@ -43,13 +43,16 @@ def batter_water_activity(water_content):
 
 def pure_partial_vapor_pressure(temperature):
     T = temperature
-    return (6.1121e-4) * np.exp((18.678 - (273.15 + T) / 234.5) * ((273.15 + T) / (530.20 + T)))
+    return (6.1121e-4) * np.exp((18.678 - (273.15 + T) / 234.5) \
+                                            * ((273.15 + T) / (530.20 + T)))
 
 def partial_vapor_pressure(water_content, temperature):
-    return batter_water_activity(water_content) * pure_partial_vapor_pressure(temperature)
+    return batter_water_activity(water_content) \
+            * pure_partial_vapor_pressure(temperature)
 
 def batter_vapor_content(water_content, temperature):
-    return (vapor_molar_mass * partial_vapor_pressure(water_content, temperature)) / (batter_density * gas_constant * temperature)
+    return (vapor_molar_mass * partial_vapor_pressure(water_content, temperature)) \
+             / (batter_density * gas_constant * temperature)
 
 def batter_air_content(water_content, temperature, pressure):
     p = pressure - partial_vapor_pressure(water_content, temperature)
@@ -58,24 +61,29 @@ def batter_air_content(water_content, temperature, pressure):
 def humid_air_molar_mass(vapor_content, air_content):
     vapor_moles = vapor_content / vapor_molar_mass
     air_moles = air_content / air_molar_mass
-    return (vapor_moles * vapor_molar_mass + air_moles * air_molar_mass) / (vapor_moles + air_moles)
+    return (vapor_moles * vapor_molar_mass + air_moles * air_molar_mass) \
+                / (vapor_moles + air_moles)
 
 def humid_air_heat_capacity(vapor_content, air_content):
     vapor_moles = vapor_content / vapor_molar_mass
     air_moles = air_content / air_molar_mass
-    return (vapor_moles * vapor_heat_capacity + air_moles * air_heat_capacity) / (vapor_moles + air_moles)
+    return (vapor_moles * vapor_heat_capacity + air_moles * air_heat_capacity) \
+                / (vapor_moles + air_moles)
 
 def humid_air_kinematic_viscosity(vapor_content, air_content):
     vapor_moles = vapor_content / vapor_molar_mass
     air_moles = air_content / air_molar_mass
-    return (vapor_moles * vapor_kinematic_viscosity + air_moles * air_kinematic_viscosity) / (vapor_moles + air_moles)
+    return (vapor_moles * vapor_kinematic_viscosity + air_moles \
+                * air_kinematic_viscosity) / (vapor_moles + air_moles)
 
 def batter_heat_capacity(water_content, temperature, pressure):
     vapor_content = batter_vapor_content(water_content, temperature)
     air_content = batter_air_content(water_content, temperature, pressure)
     solid_content = 1 - water_content
     humid_air_content = vapor_content + air_content
-    return solid_content * solid_heat_capacity + water_content * water_heat_capacity + humid_air_content * humid_air_heat_capacity(vapor_content, air_content)
+    return solid_content * solid_heat_capacity \
+            + water_content * water_heat_capacity \
+            + humid_air_content * humid_air_heat_capacity(vapor_content, air_content)
 
 def batter_thermal_diffusivity(water_content, temperature, pressure, porosity):
     heat_capacity = batter_heat_capacity(water_content, temperature, pressure)

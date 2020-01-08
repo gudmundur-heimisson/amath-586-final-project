@@ -1,4 +1,4 @@
-# Author: Guðmundur Heimisson
+# Author: Gudmundur Heimisson
 # Email: heimig@uw.edu
 # AMATH 586 Final Project Code
 # module ode.scaling
